@@ -1,24 +1,21 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+import { Route } from "react-router-dom";
 import "./App.css";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
 import "typeface-roboto";
-import Post from "./components/Post";
-// import * as Api from "./services/Api";
+import Posts from "./pages/Posts";
 
 class App extends Component {
-  componentDidMount() {
-    // const posts = Api.getAllPosts();
-  }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          <Post />
-        </p>
+        <AppBar position="static" color="primary">
+          <Toolbar>Title</Toolbar>
+        </AppBar>
+        <div className="app-content">
+          <Route exact path="/" component={Posts} />
+        </div>
       </div>
     );
   }
