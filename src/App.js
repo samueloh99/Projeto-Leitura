@@ -3,8 +3,12 @@ import logo from "./logo.svg";
 import "./App.css";
 import "typeface-roboto";
 import Post from "./components/Post";
+// import * as Api from "./services/Api";
 
 class App extends Component {
+  componentDidMount() {
+    // const posts = Api.getAllPosts();
+  }
   render() {
     return (
       <div className="App">
