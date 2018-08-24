@@ -3,11 +3,8 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 
 class Comment extends Component {
-  state = {
-    autor: "",
-    comentario: ""
-  };
   render() {
+    const { autor, comentario } = this.props;
     return (
       <div>
         <Card>

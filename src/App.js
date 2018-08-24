@@ -5,6 +5,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import "typeface-roboto";
 import Posts from "./pages/Posts";
+import PostDetails from "./pages/PostDetails";
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
         </AppBar>
         <div className="app-content">
           <Route exact path="/" component={Posts} />
+          <Route exact path="/details" component={PostDetails} />
         </div>
       </div>
     );
