@@ -64,7 +64,12 @@ class Posts extends Component {
           <Icon>add</Icon>
           Novo Post
         </Button>
-        <Post />
+        <Post
+          titulo="consumindo api da marvel com vue js"
+          autor="Vinícius Aragão"
+          totalPontos="51"
+          totalComentarios="12"
+        />
         <Dialog
           open={this.state.open}
           aria-labelledby="responsive-dialog-title"

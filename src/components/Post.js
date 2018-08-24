@@ -5,20 +5,31 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 import PropTypes from "prop-types";
+import Rate from "./Rate";
 
 const Post = props => {
   const { titulo, autor, totalPontos, totalComentarios } = props;
   return (
     <Card>
       <CardContent>
-        <h2>{titulo}</h2>
-        <p>{autor}</p>
-        <Icon>comment</Icon>
-        <div>{totalComentarios}</div>
-        <h3>{totalPontos}</h3>
+        <h2 className="post-title">{titulo}</h2>
+        <p className="post-author">{autor}</p>
+
+        <div class="info-post">
+          <div>
+            <Icon>comment</Icon>
+            <div>{totalComentarios}</div>
+          </div>
+
+          <div>
+            <h3 className="total-points">{totalPontos}</h3>
+          </div>
+        </div>
       </CardContent>
-      <CardActions>
-        <Button>Detalhes</Button>
+      <CardActions className="info-post">
+        <Button color="primary">Detalhes</Button>
+        <span style={{ flex: 1 }} />
+        <Rate />
       </CardActions>
     </Card>
   );

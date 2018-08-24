@@ -11,7 +11,7 @@ class App extends Component {
     return (
       <div className="App">
         <AppBar position="static" color="primary">
-          <Toolbar>Title</Toolbar>
+          <Toolbar>Projeto Leitura</Toolbar>
         </AppBar>
         <div className="app-content">
           <Route exact path="/" component={Posts} />

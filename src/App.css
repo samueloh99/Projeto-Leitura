@@ -9,3 +9,28 @@ body {
 .button-add-post {
   margin-bottom: 16px !important;
 }
+
+.info-post {
+  display: flex;
+  align-items: center;
+}
+
+.total-points {
+  font-size: 50px;
+  margin: 0px;
+  margin-left: 28px;
+  color: #f3c819;
+}
+
+.button-rate {
+  margin: 0px 6px 10px 28px !important;
+}
+
+.post-title {
+  margin-bottom: 0px;
+}
+
+.post-author {
+  margin-top: 6px;
+  margin-bottom: 28px;
+}
