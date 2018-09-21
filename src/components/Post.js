@@ -10,7 +10,7 @@ import Rate from "./Rate";
 const Post = props => {
   const { titulo, autor, totalPontos, totalComentarios } = props;
   return (
-    <Card>
+    <Card className="post-card">
       <CardContent>
         <h2 className="post-title">{titulo}</h2>
         <p className="post-author">{autor}</p>

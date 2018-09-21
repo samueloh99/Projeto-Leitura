@@ -1,6 +1,6 @@
 import React, { Component } from "react";
+import * as API from "../services/Api";
 import Post from "../components/Post";
-// import * as Api from "./services/Api";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 import Dialog from "@material-ui/core/Dialog";
@@ -10,6 +10,10 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import TextField from "@material-ui/core/TextField";
 import Snackbar from "@material-ui/core/Snackbar";
+import FormControl from "@material-ui/core/FormControl";
+import NativeSelect from "@material-ui/core/NativeSelect";
+import InputLabel from "@material-ui/core/InputLabel";
+import Input from "@material-ui/core/Input";
 
 class Posts extends Component {
   state = {
@@ -18,11 +22,20 @@ class Posts extends Component {
     corpo: "",
     autor: "",
     showSnack: false,
-    snackMessage: ""
+    snackMessage: "",
+    posts: [],
+    categorias: [],
+    categoriaSelecionada: ""
   };
 
   componentDidMount() {
-    // const posts = Api.getAllPosts();
+    API.getAllPosts().then(posts => {
+      console.log(posts);
+      this.setState({ posts });
+    });
+    API.getAllCategories().then(categorias => {
+      this.setState({ categorias });
+    });
   }
 
   openDialog = () => {
@@ -50,6 +63,14 @@ class Posts extends Component {
   onConfirmDialog = () => {
     if (!this.state.titulo || !this.state.corpo || !this.state.autor)
       this.openSnack("Preencha todos os campos.");
+    else {
+      API.savePost({
+        title: this.state.titulo,
+        timestamp: Date.now(),
+        body: this.state.corpo,
+        author: this.state.autor
+      });
+    }
   };
 
   render() {
@@ -64,12 +85,17 @@ class Posts extends Component {
           <Icon>add</Icon>
           Novo Post
         </Button>
-        <Post
-          titulo="consumindo api da marvel com vue js"
-          autor="Vinícius Aragão"
-          totalPontos="51"
-          totalComentarios="12"
-        />
+        {this.state.posts.length &&
+          this.state.posts.map(post => (
+            <Post
+              key={post.id}
+              titulo={post.title}
+              autor={post.author}
+              totalPontos={post.voteScore}
+              totalComentarios={post.commentCount}
+            />
+          ))}
+
         <Dialog
           open={this.state.open}
           aria-labelledby="responsive-dialog-title"
@@ -83,20 +109,44 @@ class Posts extends Component {
                 fullWidth
                 required
                 label="Título"
-                onChange={this.onChangeInput}
+                onChange={this.onChangeInput("titulo")}
               />
               <TextField
                 fullWidth
                 required
                 label="Corpo"
-                onChange={this.onChangeInput}
+                onChange={this.onChangeInput("corpo")}
               />
               <TextField
                 fullWidth
                 required
                 label="Autor"
-                onChange={this.onChangeInput}
+                onChange={this.onChangeInput("autor")}
               />
+
+              <FormControl style={{ minWidth: "100%" }}>
+                <InputLabel shrink htmlFor="categoria">
+                  Age
+                </InputLabel>
+                <NativeSelect
+                  input={<Input name="categoria" id="categoria" />}
+                  value={this.state.categoriaSelecionada}
+                  onChange={this.onChangeInput("categoriaSelecionada")}
+                >
+                  <option value="" selected>
+                    <em>Selecione uma categoria</em>
+                  </option>
+
+                  {this.state.categorias.length &&
+                    this.state.categorias.map(categoria => {
+                      return (
+                        <option key={categoria.name} value={categoria.name}>
+                          {categoria.name}
+                        </option>
+                      );
+                    })}
+                </NativeSelect>
+              </FormControl>
             </DialogContentText>
           </DialogContent>
           <DialogActions>

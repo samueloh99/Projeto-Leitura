@@ -9,7 +9,6 @@ class Rate extends Component {
         <IconButton className="button-rate" mini color="primary" variant="fab">
           <Icon>thumb_up</Icon>
         </IconButton>
-        <h5>12</h5>
         <IconButton
           className="button-rate"
           mini
@@ -18,7 +17,6 @@ class Rate extends Component {
         >
           <Icon>thumb_down</Icon>
         </IconButton>
-        <h5>1</h5>
       </div>
     );
   }
