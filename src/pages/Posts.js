@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import * as API from "../services/Api";
+import { connect } from "react-redux";
+import { getPosts, loadCategories } from "../actions";
+
 import Post from "../components/Post";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
@@ -23,16 +26,12 @@ class Posts extends Component {
     autor: "",
     showSnack: false,
     snackMessage: "",
-    posts: [],
     categorias: [],
     categoriaSelecionada: ""
   };
 
   componentDidMount() {
-    API.getAllPosts().then(posts => {
-      console.log(posts);
-      this.setState({ posts });
-    });
+    this.props.carregarPosts();
     API.getAllCategories().then(categorias => {
       this.setState({ categorias });
     });
@@ -74,6 +73,7 @@ class Posts extends Component {
   };
 
   render() {
+    const { posts } = this.props;
     return (
       <div>
         <Button
@@ -85,8 +85,8 @@ class Posts extends Component {
           <Icon>add</Icon>
           Novo Post
         </Button>
-        {this.state.posts.length &&
-          this.state.posts.map(post => (
+        {posts &&
+          posts.map(post => (
             <Post
               key={post.id}
               titulo={post.title}
@@ -177,4 +177,15 @@ class Posts extends Component {
   }
 }
 
-export default Posts;
+const MapStateToProps = state => {
+  return {
+    posts: state.posts
+  };
+};
+
+const MapDispatchToProps = dispatch => ({
+  carregarPosts: () => dispatch(getPosts()),
+  carregarCategorias: () => dispatch(loadCategories())
+});
+
+export default connect(MapStateToProps, MapDispatchToProps)(Posts);
