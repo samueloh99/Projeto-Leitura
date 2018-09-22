@@ -1,4 +1,4 @@
-import { LOAD_POSTS } from "../actions";
+import { LOAD_POSTS } from "../actions/posts";
 
 export default function posts(state = [], action) {
   switch (action.type) {
