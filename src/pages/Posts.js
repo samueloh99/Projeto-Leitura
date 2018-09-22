@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as API from "../services/Api";
 import { connect } from "react-redux";
-import { getPosts, loadCategories } from "../actions";
+import { getPosts, getCategories } from "../actions";
 
 import Post from "../components/Post";
 import Button from "@material-ui/core/Button";
@@ -26,15 +26,12 @@ class Posts extends Component {
     autor: "",
     showSnack: false,
     snackMessage: "",
-    categorias: [],
     categoriaSelecionada: ""
   };
 
   componentDidMount() {
     this.props.carregarPosts();
-    API.getAllCategories().then(categorias => {
-      this.setState({ categorias });
-    });
+    this.props.carregarCategorias();
   }
 
   openDialog = () => {
@@ -73,7 +70,7 @@ class Posts extends Component {
   };
 
   render() {
-    const { posts } = this.props;
+    const { posts, categories } = this.props;
     return (
       <div>
         <Button
@@ -85,7 +82,7 @@ class Posts extends Component {
           <Icon>add</Icon>
           Novo Post
         </Button>
-        {posts &&
+        {posts.length &&
           posts.map(post => (
             <Post
               key={post.id}
@@ -137,8 +134,8 @@ class Posts extends Component {
                     <em>Selecione uma categoria</em>
                   </option>
 
-                  {this.state.categorias.length &&
-                    this.state.categorias.map(categoria => {
+                  {categories &&
+                    categories.map(categoria => {
                       return (
                         <option key={categoria.name} value={categoria.name}>
                           {categoria.name}
@@ -179,13 +176,14 @@ class Posts extends Component {
 
 const MapStateToProps = state => {
   return {
-    posts: state.posts
+    posts: state.posts,
+    categories: state.categories
   };
 };
 
 const MapDispatchToProps = dispatch => ({
   carregarPosts: () => dispatch(getPosts()),
-  carregarCategorias: () => dispatch(loadCategories())
+  carregarCategorias: () => dispatch(getCategories())
 });
 
 export default connect(MapStateToProps, MapDispatchToProps)(Posts);

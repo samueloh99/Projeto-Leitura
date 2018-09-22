@@ -10,14 +10,23 @@ export const loadPosts = posts => {
   };
 };
 
-export const loadCategories = () => ({
-  type: LOAD_CATEGORIES
+export const loadCategories = categories => ({
+  type: LOAD_CATEGORIES,
+  categories
 });
 
 export const getPosts = () => {
   return dispatch => {
     API.getAllPosts().then(posts => {
       dispatch(loadPosts(posts));
+    });
+  };
+};
+
+export const getCategories = () => {
+  return dispatch => {
+    API.getAllCategories().then(categories => {
+      dispatch(loadCategories(categories));
     });
   };
 };
