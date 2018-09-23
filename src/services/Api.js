@@ -23,3 +23,7 @@ export const savePost = (post, successCallback, errorCallback) => {
   post.id = uuidvl();
   return api.post("/posts", post);
 };
+
+export const sendVote = (id, type) => {
+  return api.post("/posts/" + id, { option: type });
+};
