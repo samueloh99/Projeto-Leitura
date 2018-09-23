@@ -4,7 +4,6 @@ import { getPosts } from "../actions/posts";
 
 import Post from "../components/Post";
 import RegisterDialog from "../components/RegisterDialog";
-import Snackbar from "@material-ui/core/Snackbar";
 
 class Posts extends Component {
   state = {
@@ -20,7 +19,6 @@ class Posts extends Component {
 
   render() {
     const { posts } = this.props;
-    const { openDialog } = this.state;
     return (
       <div>
         <RegisterDialog />

@@ -21,12 +21,5 @@ export const getAllCategories = () => {
 
 export const savePost = (post, successCallback, errorCallback) => {
   post.id = uuidvl();
-  api
-    .post("/posts", post)
-    .then(() => {
-      if (successCallback) successCallback();
-    })
-    .catch(() => {
-      if (errorCallback) errorCallback();
-    });
+  return api.post("/posts", post);
 };

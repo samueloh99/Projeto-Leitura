@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import * as API from "../services/Api";
 import { connect } from "react-redux";
 import { getCategories } from "../actions/categories";
+import { insertPost } from "../actions/posts";
+import { showSnack } from "../actions/snack";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -38,30 +39,32 @@ class RegisterDialog extends Component {
     this.setState({ open: false });
   };
 
-  openSnack = snackMessage => {
-    this.setState({ showSnack: true, snackMessage });
-  };
-
-  closeSnack = () => {
-    this.setState({ showSnack: false });
-  };
-
   onChangeInput = name => event => {
     this.setState({
       [name]: event.target.value
     });
   };
 
+  onSaveSuccess = () => {
+    this.props.mostrarSnack("Post adicionado com sucesso");
+    this.closeDialog();
+  };
+
   onConfirmDialog = () => {
     if (!this.state.titulo || !this.state.corpo || !this.state.autor)
       this.openSnack("Preencha todos os campos.");
     else {
-      API.savePost({
-        title: this.state.titulo,
-        timestamp: Date.now(),
-        body: this.state.corpo,
-        author: this.state.autor
-      });
+      const { addPost } = this.props;
+
+      addPost(
+        {
+          title: this.state.titulo,
+          timestamp: Date.now(),
+          body: this.state.corpo,
+          author: this.state.autor
+        },
+        this.onSaveSuccess
+      );
     }
   };
 
@@ -157,7 +160,10 @@ const MapStateToProps = state => {
 };
 
 const MapDispatchToProps = dispatch => ({
-  carregarCategorias: () => dispatch(getCategories())
+  carregarCategorias: () => dispatch(getCategories()),
+  addPost: (post, successCallback) =>
+    dispatch(insertPost(post, successCallback)),
+  mostrarSnack: message => dispatch(showSnack(message))
 });
 
 export default connect(MapStateToProps, MapDispatchToProps)(RegisterDialog);
