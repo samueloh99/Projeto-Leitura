@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getPosts } from "../actions/posts";
 
-import Post from "../components/Post";
+import ListPosts from "../components/ListPosts";
 import RegisterDialog from "../components/RegisterDialog";
 
 class Posts extends Component {
@@ -22,17 +22,7 @@ class Posts extends Component {
     return (
       <div>
         <RegisterDialog />
-        {posts &&
-          posts.map(post => (
-            <Post
-              key={post.id}
-              id={post.id}
-              titulo={post.title}
-              autor={post.author}
-              totalPontos={post.voteScore}
-              totalComentarios={post.commentCount}
-            />
-          ))}
+        <ListPosts posts={posts} />
       </div>
     );
   }

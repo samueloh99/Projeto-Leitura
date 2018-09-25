@@ -38,3 +38,7 @@ body {
   margin-top: 6px;
   margin-bottom: 28px;
 }
+
+.sort-posts {
+  margin-bottom: 8px !important;
+}
