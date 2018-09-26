@@ -40,5 +40,9 @@ body {
 }
 
 .sort-posts {
-  margin-bottom: 8px !important;
+  margin: 8px 0px 8px !important;
+}
+
+.select-input {
+  width: 150px;
 }
