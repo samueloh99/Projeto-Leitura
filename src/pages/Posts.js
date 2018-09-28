@@ -5,6 +5,8 @@ import { getPosts } from "../actions/posts";
 import ListPosts from "../components/ListPosts";
 import RegisterDialog from "../components/RegisterDialog";
 
+import { withRouter } from "react-router-dom";
+
 class Posts extends Component {
   state = {
     openDialog: false
@@ -38,4 +40,4 @@ const MapDispatchToProps = dispatch => ({
   carregarPosts: () => dispatch(getPosts())
 });
 
-export default connect(MapStateToProps, MapDispatchToProps)(Posts);
+export default withRouter(connect(MapStateToProps, MapDispatchToProps)(Posts));

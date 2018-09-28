@@ -33,8 +33,8 @@ class App extends Component {
           <Toolbar>Projeto Leitura</Toolbar>
         </AppBar>
         <div className="app-content">
+          <Route exact path="/:category/:post_id" component={PostDetails} />
           <Route exact path="/" component={Posts} />
-          <Route exact path="/details" component={PostDetails} />
         </div>
         <Snackbar
           autoHideDuration={4000}

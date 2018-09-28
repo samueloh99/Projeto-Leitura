@@ -83,6 +83,7 @@ class ListPosts extends Component {
               autor={post.author}
               totalPontos={post.voteScore}
               totalComentarios={post.commentCount}
+              categoria={post.category}
             />
           ))}
       </div>

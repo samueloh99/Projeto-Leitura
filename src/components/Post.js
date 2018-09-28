@@ -8,16 +8,25 @@ import PropTypes from "prop-types";
 import Rate from "./Rate";
 import { connect } from "react-redux";
 import { saveVote } from "../actions/posts";
+import { Link } from "react-router-dom";
 
 const Post = props => {
-  const { id, titulo, autor, totalPontos, totalComentarios, sendVote } = props;
+  const {
+    id,
+    titulo,
+    autor,
+    totalPontos,
+    totalComentarios,
+    sendVote,
+    categoria
+  } = props;
   return (
     <Card className="post-card">
       <CardContent>
         <h2 className="post-title">{titulo}</h2>
         <p className="post-author">{autor}</p>
 
-        <div class="info-post">
+        <div className="info-post">
           <div>
             <Icon>comment</Icon>
             <div>{totalComentarios}</div>
@@ -29,7 +38,9 @@ const Post = props => {
         </div>
       </CardContent>
       <CardActions className="info-post">
-        <Button color="primary">Detalhes</Button>
+        <Link to={`${categoria}/${id}`}>
+          <Button color="primary">Detalhes</Button>
+        </Link>
         <span style={{ flex: 1 }} />
         <Rate
           clickMethod={type => {
@@ -46,7 +57,8 @@ Post.propTypes = {
   titulo: PropTypes.string,
   autor: PropTypes.string,
   totalPontos: PropTypes.number,
-  totalComentarios: PropTypes.number
+  totalComentarios: PropTypes.number,
+  categoria: PropTypes.string
 };
 
 const MapDispatchToProps = dispatch => ({
