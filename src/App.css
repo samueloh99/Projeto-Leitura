@@ -15,6 +15,20 @@ body {
   align-items: center;
 }
 
+.link-to-category,
+.link-detalhes {
+  text-decoration: none;
+}
+
+.link-to-category div {
+  cursor: pointer;
+  margin: 8px 0px 28px 0px;
+}
+
+.link-to-category div:hover {
+  opacity: 0.8;
+}
+
 .total-points {
   font-size: 50px;
   margin: 0px;
@@ -36,7 +50,6 @@ body {
 
 .post-author {
   margin-top: 6px;
-  margin-bottom: 28px;
 }
 
 .sort-posts {

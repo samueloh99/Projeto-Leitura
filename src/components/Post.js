@@ -9,6 +9,7 @@ import Rate from "./Rate";
 import { connect } from "react-redux";
 import { saveVote } from "../actions/posts";
 import { Link } from "react-router-dom";
+import Chip from "@material-ui/core/Chip";
 
 const Post = props => {
   const {
@@ -24,8 +25,12 @@ const Post = props => {
     <Card className="post-card">
       <CardContent>
         <h2 className="post-title">{titulo}</h2>
-        <p className="post-author">{autor}</p>
-
+        <div className="post-author">{autor}</div>
+        {categoria && (
+          <Link className="link-to-category" to={`/${categoria}`}>
+            <Chip label={categoria} />
+          </Link>
+        )}
         <div className="info-post">
           <div>
             <Icon>comment</Icon>
@@ -38,7 +43,7 @@ const Post = props => {
         </div>
       </CardContent>
       <CardActions className="info-post">
-        <Link to={`${categoria}/${id}`}>
+        <Link className="link-detalhes" to={`${categoria}/${id}`}>
           <Button color="primary">Detalhes</Button>
         </Link>
         <span style={{ flex: 1 }} />

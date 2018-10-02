@@ -6,7 +6,6 @@ import { showSnack } from "../actions/snack";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
@@ -61,7 +60,8 @@ class RegisterDialog extends Component {
           title: this.state.titulo,
           timestamp: Date.now(),
           body: this.state.corpo,
-          author: this.state.autor
+          author: this.state.autor,
+          category: this.state.categoriaSelecionada
         },
         this.onSaveSuccess
       );
@@ -87,52 +87,46 @@ class RegisterDialog extends Component {
         >
           <DialogTitle id="responsive-dialog-title">Adicionar Post</DialogTitle>
           <DialogContent>
-            <DialogContentText>
-              <p>Preencha as informações abaixo para cadastrar um novo post.</p>
+            Preencha as informações abaixo para cadastrar um novo post.
+            <TextField
+              fullWidth
+              required
+              label="Título"
+              onChange={this.onChangeInput("titulo")}
+            />
+            <TextField
+              fullWidth
+              required
+              label="Corpo"
+              onChange={this.onChangeInput("corpo")}
+            />
+            <TextField
+              fullWidth
+              required
+              label="Autor"
+              onChange={this.onChangeInput("autor")}
+            />
+            <FormControl style={{ minWidth: "100%" }}>
+              <InputLabel shrink htmlFor="categoria">
+                Age
+              </InputLabel>
+              <NativeSelect
+                input={<Input name="categoria" id="categoria" />}
+                value={this.state.categoriaSelecionada}
+                onChange={this.onChangeInput("categoriaSelecionada")}
+              >
+                <option value="">Selecione uma categoria</option>
 
-              <TextField
-                fullWidth
-                required
-                label="Título"
-                onChange={this.onChangeInput("titulo")}
-              />
-              <TextField
-                fullWidth
-                required
-                label="Corpo"
-                onChange={this.onChangeInput("corpo")}
-              />
-              <TextField
-                fullWidth
-                required
-                label="Autor"
-                onChange={this.onChangeInput("autor")}
-              />
-
-              <FormControl style={{ minWidth: "100%" }}>
-                <InputLabel shrink htmlFor="categoria">
-                  Age
-                </InputLabel>
-                <NativeSelect
-                  input={<Input name="categoria" id="categoria" />}
-                  value={this.state.categoriaSelecionada}
-                  onChange={this.onChangeInput("categoriaSelecionada")}
-                >
-                  <option value="" selected>
-                    <em>Selecione uma categoria</em>
-                  </option>
-
-                  {categories &&
-                    categories.map(categoria => {
-                      return (
-                        <option key={categoria.name} value={categoria.name}>
-                          {categoria.name}
-                        </option>
-                      );
-                    })}
-                </NativeSelect>
-              </FormControl>
-            </DialogContentText>
+                {categories &&
+                  categories.map(categoria => {
+                    return (
+                      <option key={categoria.name} value={categoria.name}>
+                        {categoria.name}
+                      </option>
+                    );
+                  })}
+              </NativeSelect>
+            </FormControl>
           </DialogContent>
           <DialogActions>
             <Button onClick={this.closeDialog} color="primary">
