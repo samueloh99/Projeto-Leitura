@@ -9,7 +9,7 @@ const Rate = props => {
       <IconButton
         onClick={() => clickMethod("upVote")}
         className="button-rate"
-        mini
+        mini="true"
         color="primary"
         variant="fab"
       >
@@ -18,7 +18,7 @@ const Rate = props => {
       <IconButton
         onClick={() => clickMethod("downVote")}
         className="button-rate"
-        mini
+        mini="true"
         color="secondary"
         variant="fab"
       >
