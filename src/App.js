@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -8,6 +8,8 @@ import "typeface-roboto";
 import Posts from "./pages/Posts";
 import PostDetails from "./pages/PostDetails";
 import Snackbar from "@material-ui/core/Snackbar";
+import { withRouter } from "react-router-dom";
+import { hideSnack } from "./actions/snack";
 
 class App extends Component {
   state = {
@@ -15,9 +17,14 @@ class App extends Component {
   };
 
   handleClose = () => {
-    this.setState({
-      open: false
-    });
+    this.setState(
+      {
+        open: false
+      },
+      () => {
+        this.props.hideSnackbar();
+      }
+    );
   };
 
   componentWillReceiveProps({ showSnack }) {
@@ -33,8 +40,10 @@ class App extends Component {
           <Toolbar>Projeto Leitura</Toolbar>
         </AppBar>
         <div className="app-content">
-          <Route exact path="/:category/:post_id" component={PostDetails} />
-          <Route exact path="/" component={Posts} />
+          <Switch>
+            <Route exact path="/:category/:post_id" component={PostDetails} />
+            <Route exact path="/" component={Posts} />
+          </Switch>
         </div>
         <Snackbar
           autoHideDuration={4000}
@@ -58,4 +67,8 @@ const MapStateToProps = state => {
   };
 };
 
-export default connect(MapStateToProps, null)(App);
+const MapDispatchToProps = dispatch => ({
+  hideSnackbar: () => dispatch(hideSnack())
+});
+
+export default withRouter(connect(MapStateToProps, MapDispatchToProps)(App));

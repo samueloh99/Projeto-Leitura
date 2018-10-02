@@ -1,13 +1,18 @@
-import { SHOW_SNACK } from "../actions/snack";
+import { SHOW_SNACK, HIDE_SNACK } from "../actions/snack";
 
 const initialState = {
   showSnack: false,
   message: null
 };
 export default function snack(state = initialState, action) {
+  const { showSnack, message } = action;
   switch (action.type) {
     case SHOW_SNACK:
-      const { showSnack, message } = action;
+      return {
+        showSnack,
+        message
+      };
+    case HIDE_SNACK:
       return {
         showSnack,
         message
