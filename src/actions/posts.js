@@ -33,6 +33,14 @@ export const getPosts = () => {
   };
 };
 
+export const getPostsByCategory = category => {
+  return dispatch => {
+    API.getAllPostsByCategory(category).then(posts => {
+      dispatch(loadPosts(posts));
+    });
+  };
+};
+
 export const insertPost = (post, successCallback) => {
   return dispatch => {
     API.savePost(

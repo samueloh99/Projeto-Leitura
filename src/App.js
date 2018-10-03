@@ -6,6 +6,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import "typeface-roboto";
 import Posts from "./pages/Posts";
+import Categories from "./pages/Categories";
 import PostDetails from "./pages/PostDetails";
 import Snackbar from "@material-ui/core/Snackbar";
 import { withRouter } from "react-router-dom";
@@ -42,6 +43,7 @@ class App extends Component {
         <div className="app-content">
           <Switch>
             <Route exact path="/:category/:post_id" component={PostDetails} />
+            <Route exact path="/:category" component={Categories} />
             <Route exact path="/" component={Posts} />
           </Switch>
         </div>

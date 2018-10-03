@@ -15,6 +15,10 @@ export const getAllPosts = () => {
   return api.get("/posts").then(response => response.data);
 };
 
+export const getAllPostsByCategory = category => {
+  return api.get(`/${category}/posts`).then(response => response.data);
+};
+
 export const getAllCategories = () => {
   return api.get("categories").then(response => response.data.categories);
 };
