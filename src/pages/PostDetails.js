@@ -1,26 +1,48 @@
 import React, { Component } from "react";
-import Card from "@material-ui/core/Card";
 import Comment from "../components/Comment";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { getPostById } from "../actions/posts";
+import Post from "../components/Post";
+import RegisterDialog from "../components/RegisterDialog";
 
 class PostDetails extends Component {
+  componentDidMount() {
+    const { post_id } = this.props.match.params;
+    this.props.carregarPost(post_id);
+  }
   render() {
-    const { titulo, corpo, autor } = this.props;
+    const { post } = this.props;
     return (
       <div>
-        <Link to="/">
+        <Link className="link-default" to="/">
           <Button>Voltar</Button>
         </Link>
-        <Card>
-          <h3>{titulo}</h3>
-          <h5>{autor}</h5>
-          <p>{corpo}</p>
-          <Comment />
-        </Card>
+        <RegisterDialog isEdit={true} post={post} />
+        <Post
+          id={post.id}
+          titulo={post.title}
+          autor={post.author}
+          totalPontos={post.voteScore}
+          totalComentarios={post.commentCount}
+          categoria={post.category}
+        />
+        <h4>Comentários</h4>
+        <Comment />
       </div>
     );
   }
 }
 
-export default PostDetails;
+const MapStateToProps = state => {
+  return {
+    post: state.post
+  };
+};
+
+const MapDispatchToProps = dispatch => ({
+  carregarPost: id => dispatch(getPostById(id))
+});
+
+export default connect(MapStateToProps, MapDispatchToProps)(PostDetails);

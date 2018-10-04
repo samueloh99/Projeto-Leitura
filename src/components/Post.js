@@ -27,7 +27,7 @@ const Post = props => {
         <h2 className="post-title">{titulo}</h2>
         <div className="post-author">{autor}</div>
         {categoria && (
-          <Link className="link-to-category" to={`/${categoria}`}>
+          <Link className="link-default" to={`/${categoria}`}>
             <Chip label={categoria} />
           </Link>
         )}
@@ -43,7 +43,7 @@ const Post = props => {
         </div>
       </CardContent>
       <CardActions className="info-post">
-        <Link className="link-detalhes" to={`${categoria}/${id}`}>
+        <Link className="link-default" to={`${categoria}/${id}`}>
           <Button color="primary">Detalhes</Button>
         </Link>
         <span style={{ flex: 1 }} />
