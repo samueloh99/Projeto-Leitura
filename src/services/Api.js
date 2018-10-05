@@ -42,3 +42,12 @@ export const updatePost = ({ id, title, body }) => {
 export const sendVote = (id, type) => {
   return api.post("/posts/" + id, { option: type });
 };
+
+export const getAllComments = idPost => {
+  return api.get(`/posts/${idPost}/comments`).then(response => response.data);
+};
+
+export const saveComment = comment => {
+  comment.id = uuidvl();
+  return api.post("/comments", comment);
+};

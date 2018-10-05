@@ -16,6 +16,7 @@ const Post = props => {
     id,
     titulo,
     autor,
+    corpo,
     totalPontos,
     totalComentarios,
     sendVote,
@@ -31,6 +32,7 @@ const Post = props => {
             <Chip label={categoria} />
           </Link>
         )}
+        {corpo && <div className="container-body-post">{corpo}</div>}
         <div className="info-post">
           <div>
             <Icon>comment</Icon>
@@ -63,7 +65,8 @@ Post.propTypes = {
   autor: PropTypes.string,
   totalPontos: PropTypes.number,
   totalComentarios: PropTypes.number,
-  categoria: PropTypes.string
+  categoria: PropTypes.string,
+  mostrarCorpo: PropTypes.boolean
 };
 
 const MapDispatchToProps = dispatch => ({
