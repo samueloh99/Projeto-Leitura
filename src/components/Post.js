@@ -65,8 +65,7 @@ Post.propTypes = {
   autor: PropTypes.string,
   totalPontos: PropTypes.number,
   totalComentarios: PropTypes.number,
-  categoria: PropTypes.string,
-  mostrarCorpo: PropTypes.boolean
+  categoria: PropTypes.string
 };
 
 const MapDispatchToProps = dispatch => ({

@@ -84,7 +84,6 @@ class ListPosts extends Component {
               totalPontos={post.voteScore}
               totalComentarios={post.commentCount}
               categoria={post.category}
-              mostrarCorpo={false}
             />
           ))}
       </div>
