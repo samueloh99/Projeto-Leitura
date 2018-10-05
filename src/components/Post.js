@@ -20,7 +20,8 @@ const Post = props => {
     totalPontos,
     totalComentarios,
     sendVote,
-    categoria
+    categoria,
+    isDetalhes
   } = props;
   return (
     <Card className="post-card">
@@ -45,9 +46,11 @@ const Post = props => {
         </div>
       </CardContent>
       <CardActions className="info-post">
-        <Link className="link-default" to={`${categoria}/${id}`}>
-          <Button color="primary">Detalhes</Button>
-        </Link>
+        {!isDetalhes && (
+          <Link className="link-default" to={`${categoria}/${id}`}>
+            <Button color="primary">Detalhes</Button>
+          </Link>
+        )}
         <span style={{ flex: 1 }} />
         <Rate
           clickMethod={type => {
@@ -65,7 +68,8 @@ Post.propTypes = {
   autor: PropTypes.string,
   totalPontos: PropTypes.number,
   totalComentarios: PropTypes.number,
-  categoria: PropTypes.string
+  categoria: PropTypes.string,
+  isDetalhes: PropTypes.boolean
 };
 
 const MapDispatchToProps = dispatch => ({

@@ -32,6 +32,7 @@ class PostDetails extends Component {
           totalComentarios={post.commentCount}
           categoria={post.category}
           corpo={post.body}
+          isDetalhes={true}
         />
         <RegisterComment idPost={post.id} />
         <ListComments comments={comments} />
