@@ -4,6 +4,7 @@ export const LOAD_POSTS = "LOAD_POSTS";
 export const INSERT_POST = "INSERT_POST";
 export const UPDATE_POST = "UPDATE_POST";
 export const GET_POST = "GET_POST";
+export const DELETE_POST = "DELETE_POST";
 
 export const loadPosts = posts => {
   return {
@@ -30,6 +31,13 @@ export const updatePost = post => {
   return {
     type: UPDATE_POST,
     post
+  };
+};
+
+export const deletePost = id => {
+  return {
+    type: DELETE_POST,
+    id
   };
 };
 
@@ -77,6 +85,15 @@ export const persistPost = (post, successCallback, isEdit = false) => {
         dispatch(insertNewPost(newPost));
       });
     }
+  };
+};
+
+export const deletePostById = (id, callbackSucess) => {
+  return dispatch => {
+    API.deletePost(id).then(response => {
+      dispatch(deletePost(id));
+      if (callbackSucess) callbackSucess();
+    });
   };
 };
 

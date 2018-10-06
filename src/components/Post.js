@@ -11,6 +11,12 @@ import { saveVote } from "../actions/posts";
 import { Link } from "react-router-dom";
 import Chip from "@material-ui/core/Chip";
 
+const removeHandler = (id, removerMethod, onRemoveSuccess) => {
+  if (removerMethod && typeof removerMethod === "function") {
+    removerMethod(id, onRemoveSuccess);
+  }
+};
+
 const Post = props => {
   const {
     id,
@@ -21,12 +27,25 @@ const Post = props => {
     totalComentarios,
     sendVote,
     categoria,
-    isDetalhes
+    isDetalhes,
+    removerMethod,
+    onRemoveSuccess
   } = props;
   return (
     <Card className="post-card">
       <CardContent>
-        <h2 className="post-title">{titulo}</h2>
+        <h2 className="post-title">
+          {titulo}
+          <span className="flex-item" />
+          {isDetalhes && (
+            <Button
+              onClick={() => removeHandler(id, removerMethod, onRemoveSuccess)}
+              color="secondary"
+            >
+              remover
+            </Button>
+          )}
+        </h2>
         <div className="post-author">{autor}</div>
         {categoria && (
           <Link className="link-default" to={`/${categoria}`}>
@@ -69,7 +88,8 @@ Post.propTypes = {
   totalPontos: PropTypes.number,
   totalComentarios: PropTypes.number,
   categoria: PropTypes.string,
-  isDetalhes: PropTypes.boolean
+  isDetalhes: PropTypes.boolean,
+  removerMethod: PropTypes.func
 };
 
 const MapDispatchToProps = dispatch => ({

@@ -9,7 +9,13 @@ class ListComments extends Component {
         <h4>Comentários</h4>
         {comments &&
           comments.map(comment => {
-            return <Comment autor={comment.author} comentario={comment.body} />;
+            return (
+              <Comment
+                autor={comment.author}
+                comentario={comment.body}
+                pontos={comment.voteScore}
+              />
+            );
           })}
         {!comments.length && <p>Não há comentários</p>}
       </div>

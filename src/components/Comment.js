@@ -5,13 +5,14 @@ import Rate from "./Rate";
 
 class Comment extends Component {
   render() {
-    const { autor, comentario } = this.props;
+    const { autor, comentario, pontos } = this.props;
     return (
       <div>
         <Card>
           <CardContent>
             <h2>{autor}</h2>
             <p>{comentario}</p>
+            <p>{pontos}</p>
           </CardContent>
           <Rate />
         </Card>

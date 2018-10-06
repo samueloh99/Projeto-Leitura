@@ -45,6 +45,8 @@ body {
 
 .post-title {
   margin-bottom: 0px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .post-author {
@@ -72,4 +74,8 @@ body {
 
 .container-comment-card {
   padding: 10px 28px 28px 28px;
+}
+
+.flex-item {
+  flex: 1;
 }

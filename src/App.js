@@ -8,6 +8,7 @@ import "typeface-roboto";
 import Posts from "./pages/Posts";
 import Categories from "./pages/Categories";
 import PostDetails from "./pages/PostDetails";
+import Page404 from "./pages/Page404";
 import Snackbar from "@material-ui/core/Snackbar";
 import { withRouter } from "react-router-dom";
 import { hideSnack } from "./actions/snack";
@@ -45,6 +46,7 @@ class App extends Component {
             <Route exact path="/:category/:post_id" component={PostDetails} />
             <Route exact path="/:category" component={Categories} />
             <Route exact path="/" component={Posts} />
+            <Route component={Page404} />
           </Switch>
         </div>
         <Snackbar

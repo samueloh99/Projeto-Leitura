@@ -2,7 +2,8 @@ import {
   LOAD_POSTS,
   INSERT_POST,
   UPDATE_POST,
-  GET_POST
+  GET_POST,
+  DELETE_POST
 } from "../actions/posts";
 
 export const posts = (state = [], action) => {
@@ -30,6 +31,8 @@ export const post = (state = {}, action) => {
       return action.post;
     case UPDATE_POST:
       return action.post;
+    case DELETE_POST:
+      return {};
     default:
       return state;
   }

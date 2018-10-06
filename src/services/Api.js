@@ -32,6 +32,10 @@ export const savePost = post => {
   return api.post("/posts", post);
 };
 
+export const deletePost = id => {
+  return api.delete(`/posts/${id}`);
+};
+
 export const updatePost = ({ id, title, body }) => {
   return api.put(`/posts/${id}`, {
     title,

@@ -4,6 +4,8 @@ import { getPostsByCategory } from "../actions/posts";
 
 import ListPosts from "../components/ListPosts";
 import RegisterDialog from "../components/RegisterDialog";
+import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 
 class Categories extends Component {
   state = {
@@ -29,6 +31,9 @@ class Categories extends Component {
     const { posts, match } = this.props;
     return (
       <div>
+        <Link className="link-default" to="/">
+          <Button>Voltar</Button>
+        </Link>
         <h2>Posts sobre {match.params.category}</h2>
         <RegisterDialog />
         {posts && <ListPosts posts={posts} />}
