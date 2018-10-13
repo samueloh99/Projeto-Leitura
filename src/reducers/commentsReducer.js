@@ -1,7 +1,8 @@
 import {
   LOAD_COMMENTS,
   ADD_COMMENT,
-  UPDATE_COMMENT
+  UPDATE_COMMENT,
+  DELETE_COMMENT
 } from "../actions/comments";
 
 export default function comments(state = [], action) {
@@ -18,6 +19,8 @@ export default function comments(state = [], action) {
         }
         return comment;
       });
+    case DELETE_COMMENT:
+      return state.filter(comment => comment.id !== action.id);
     default:
       return state;
   }

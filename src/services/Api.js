@@ -59,3 +59,7 @@ export const saveComment = comment => {
   comment.id = uuidvl();
   return api.post("/comments", comment);
 };
+
+export const deleteComment = id => {
+  return api.delete(`/comments/${id}`);
+};

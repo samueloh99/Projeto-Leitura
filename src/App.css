@@ -79,3 +79,7 @@ body {
 .flex-item {
   flex: 1;
 }
+
+.comment-title {
+  display: flex;
+}
