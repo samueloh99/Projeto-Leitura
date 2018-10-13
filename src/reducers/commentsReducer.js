@@ -1,4 +1,8 @@
-import { LOAD_COMMENTS, ADD_COMMENT } from "../actions/comments";
+import {
+  LOAD_COMMENTS,
+  ADD_COMMENT,
+  UPDATE_COMMENT
+} from "../actions/comments";
 
 export default function comments(state = [], action) {
   switch (action.type) {
@@ -7,6 +11,13 @@ export default function comments(state = [], action) {
     case ADD_COMMENT:
       const stateUpdated = state.concat(action.comment);
       return stateUpdated;
+    case UPDATE_COMMENT:
+      return state.map(comment => {
+        if (comment.id === action.comment.id) {
+          comment = action.comment;
+        }
+        return comment;
+      });
     default:
       return state;
   }

@@ -47,6 +47,10 @@ export const sendVote = (id, type) => {
   return api.post("/posts/" + id, { option: type });
 };
 
+export const sendVoteComments = (id, type) => {
+  return api.post("/comments/" + id, { option: type });
+};
+
 export const getAllComments = idPost => {
   return api.get(`/posts/${idPost}/comments`).then(response => response.data);
 };

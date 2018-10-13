@@ -11,6 +11,7 @@ class ListComments extends Component {
           comments.map(comment => {
             return (
               <Comment
+                id={comment.id}
                 autor={comment.author}
                 comentario={comment.body}
                 pontos={comment.voteScore}
