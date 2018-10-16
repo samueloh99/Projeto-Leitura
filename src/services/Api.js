@@ -63,3 +63,10 @@ export const saveComment = comment => {
 export const deleteComment = id => {
   return api.delete(`/comments/${id}`);
 };
+
+export const updateComment = ({ id, body, timestamp }) => {
+  return api.put(`/comments/${id}`, {
+    timestamp,
+    body
+  });
+};

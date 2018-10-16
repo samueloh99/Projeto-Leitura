@@ -3,7 +3,7 @@ import Comment from "./Comment";
 
 class ListComments extends Component {
   render() {
-    const { comments } = this.props;
+    const { comments, onEditClick } = this.props;
     return (
       <div>
         <h4>Comentários</h4>
@@ -15,6 +15,7 @@ class ListComments extends Component {
                 autor={comment.author}
                 comentario={comment.body}
                 pontos={comment.voteScore}
+                onEditClick={onEditClick}
               />
             );
           })}

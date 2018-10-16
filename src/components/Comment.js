@@ -19,7 +19,8 @@ class Comment extends Component {
       comentario,
       pontos,
       sendVote,
-      removeComment
+      removeComment,
+      onEditClick
     } = this.props;
     return (
       <div>
@@ -27,6 +28,13 @@ class Comment extends Component {
           <CardContent>
             <h2 className="comment-title">
               {autor}
+              <Button
+                onClick={() =>
+                  onEditClick({ id, author: autor, body: comentario })}
+                color="primary"
+              >
+                editar
+              </Button>
               <span className="flex-item" />
               <Button
                 onClick={() => {

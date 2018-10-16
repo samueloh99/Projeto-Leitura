@@ -3,13 +3,24 @@ import Card from "@material-ui/core/Card";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
-import { saveComment } from "../actions/comments";
+import { saveComment, editComment } from "../actions/comments";
 import { showSnack } from "../actions/snack";
 
 class RegisterComment extends Component {
   state = {
-    autor: "",
-    mensagem: ""
+    author: "",
+    body: "",
+    idToEdit: ""
+  };
+
+  componentWillReceiveProps = props => {
+    const { comment } = props;
+    const { id, author, body } = comment;
+    this.setState({
+      idToEdit: id,
+      author,
+      body
+    });
   };
 
   onChangeInput = name => event => {
@@ -20,51 +31,68 @@ class RegisterComment extends Component {
 
   clear = () => {
     this.setState({
-      autor: "",
-      mensagem: ""
+      author: "",
+      body: "",
+      idToEdit: ""
     });
   };
 
   save = () => {
-    const { autor, mensagem } = this.state;
-    const { idPost, sendComment, mostrarSnack } = this.props;
-    if (!autor || !mensagem) {
+    const { idToEdit, author, body } = this.state;
+    const { idPost, sendComment, updateComment, mostrarSnack } = this.props;
+    if (!author || !body) {
       mostrarSnack("Preencha todos os campos!");
       return false;
     }
+
     const comment = {
       timestamp: new Date(),
-      body: mensagem,
-      author: autor,
+      body,
+      author,
       parentId: idPost
     };
-    sendComment(comment, this.onSaveSuccess);
+
+    if (idToEdit) {
+      comment.id = idToEdit;
+      updateComment(comment, this.onSaveSuccess);
+    } else {
+      sendComment(comment, this.onSaveSuccess);
+    }
   };
 
   onSaveSuccess = () => {
-    this.props.mostrarSnack("Comentário enviado com sucesso!");
+    this.props.mostrarSnack("Comentário salvo com sucesso!");
     this.clear();
   };
 
   render() {
+    const { author, body, idToEdit } = this.state;
     return (
       <div>
         <Card className="container-comment-card">
-          <h4>Escreva um comentário :)</h4>
+          <h4>
+            {idToEdit ? (
+              `Editando comentário de ${author}`
+            ) : (
+              "Escreva um comentário :)"
+            )}
+          </h4>
+
+          {!idToEdit && (
+            <TextField
+              label="author"
+              fullWidth
+              value={author}
+              onChange={this.onChangeInput("author")}
+              margin="normal"
+            />
+          )}
 
           <TextField
-            label="Autor"
+            label="Comentário"
             fullWidth
-            value={this.state.autor}
-            onChange={this.onChangeInput("autor")}
-            margin="normal"
-          />
-
-          <TextField
-            label="Mensagem"
-            fullWidth
-            value={this.state.mensagem}
-            onChange={this.onChangeInput("mensagem")}
+            value={body}
+            onChange={this.onChangeInput("body")}
             margin="normal"
           />
 
@@ -86,6 +114,9 @@ class RegisterComment extends Component {
 const MapDispatchToProps = dispatch => ({
   sendComment: (comment, successCallback) =>
     dispatch(saveComment(comment, successCallback)),
+  updateComment: (comment, successCallback) => {
+    dispatch(editComment(comment, successCallback));
+  },
   mostrarSnack: message => dispatch(showSnack(message))
 });
 

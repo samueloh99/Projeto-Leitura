@@ -11,6 +11,10 @@ import { getComments } from "../actions/comments";
 import { showSnack } from "../actions/snack";
 
 class PostDetails extends Component {
+  state = {
+    comment: ""
+  };
+
   componentDidMount() {
     const { carregarPost, carregarComentarios, match } = this.props;
     const { post_id } = match.params;
@@ -19,7 +23,6 @@ class PostDetails extends Component {
   }
 
   componentWillReceiveProps({ post, history }) {
-    debugger;
     if (!post.id || post.isDeleted) {
       history.push("/page/notfound/404");
     }
@@ -28,6 +31,10 @@ class PostDetails extends Component {
   onRemoveSuccess = () => {
     this.props.mostrarSnack("Post removido com sucesso");
     this.props.history.push("/");
+  };
+
+  commentEditClick = comment => {
+    this.setState({ comment });
   };
 
   render() {
@@ -50,8 +57,11 @@ class PostDetails extends Component {
           removerMethod={removerPost}
           onRemoveSuccess={this.onRemoveSuccess}
         />
-        <RegisterComment idPost={post.id} />
-        <ListComments comments={comments} />
+        <RegisterComment idPost={post.id} comment={this.state.comment} />
+        <ListComments
+          comments={comments}
+          onEditClick={comment => this.commentEditClick(comment)}
+        />
       </div>
     );
   }

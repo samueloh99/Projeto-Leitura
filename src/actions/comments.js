@@ -60,3 +60,13 @@ export const saveVote = (id, typeVote) => {
     });
   };
 };
+
+export const editComment = (comment, successCallback) => {
+  return dispatch => {
+    API.updateComment(comment).then(response => {
+      const updatedComment = response.data;
+      dispatch(updateComment(updatedComment));
+      if (successCallback) successCallback();
+    });
+  };
+};
