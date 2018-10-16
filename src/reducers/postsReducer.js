@@ -3,7 +3,9 @@ import {
   INSERT_POST,
   UPDATE_POST,
   GET_POST,
-  DELETE_POST
+  DELETE_POST,
+  ADD_POST_COMMENT,
+  REMOVE_POST_COMMENT
 } from "../actions/posts/actionTypes";
 
 export const posts = (state = [], action) => {
@@ -33,6 +35,12 @@ export const post = (state = {}, action) => {
       return action.post;
     case DELETE_POST:
       return {};
+    case ADD_POST_COMMENT:
+      state.commentCount += 1;
+      return state;
+    case REMOVE_POST_COMMENT:
+      state.commentCount -= 1;
+      return state;
     default:
       return state;
   }

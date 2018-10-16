@@ -1,4 +1,6 @@
 import * as API from "../../services/Api";
+import { addPostComment, removePostComment } from "../posts";
+
 import {
   LOAD_COMMENTS,
   ADD_COMMENT,
@@ -37,8 +39,9 @@ export const getComments = idPost => {
 export const deleteCommentById = (id, successCallback) => {
   return dispatch => {
     API.deleteComment(id).then(() => {
-      if (successCallback) successCallback();
       dispatch(deleteComment(id));
+      dispatch(removePostComment());
+      if (successCallback) successCallback();
     });
   };
 };
@@ -46,9 +49,10 @@ export const deleteCommentById = (id, successCallback) => {
 export const saveComment = (comment, successCallback) => {
   return dispatch => {
     API.saveComment(comment).then(response => {
-      if (successCallback) successCallback();
       const newComment = response.data;
       dispatch(addComment(newComment));
+      dispatch(addPostComment());
+      if (successCallback) successCallback();
     });
   };
 };

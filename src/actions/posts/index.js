@@ -4,7 +4,9 @@ import {
   INSERT_POST,
   UPDATE_POST,
   GET_POST,
-  DELETE_POST
+  DELETE_POST,
+  ADD_POST_COMMENT,
+  REMOVE_POST_COMMENT
 } from "./actionTypes";
 
 export const loadPosts = posts => {
@@ -39,6 +41,18 @@ export const deletePost = id => {
   return {
     type: DELETE_POST,
     id
+  };
+};
+
+export const addPostComment = () => {
+  return {
+    type: ADD_POST_COMMENT
+  };
+};
+
+export const removePostComment = () => {
+  return {
+    type: REMOVE_POST_COMMENT
   };
 };
 
