@@ -80,7 +80,7 @@ class RegisterComment extends Component {
 
           {!idToEdit && (
             <TextField
-              label="author"
+              label="Autor"
               fullWidth
               value={author}
               onChange={this.onChangeInput("author")}
