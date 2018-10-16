@@ -56,10 +56,19 @@ $ node server
     │   ├── PostDetails.js
     │   └── Posts.js
     ├── actions # Pasta contendo todas as actions utilizadas para o Redux.
-    │   ├── categories.js
-    │   ├── comments.js
-    │   ├── posts.js
-    │   └── snack.js
+    │   ├── categories
+    │   │   ├── actionTypes.js
+    │   │   └── index.js
+    │   ├── comments
+    │   │   ├── actionTypes.js
+    │   │   └── index.js
+    │   ├── posts
+    │   │   ├── actionTypes.js
+    │   │   └── index.js
+    │   └── snack
+    │       ├── actionTypes.js
+    │       └── index.js
+    │    
     ├── reducers # Pasta com todos os reducers utilizados pelo Redux.
     │   ├── categories.js
     │   ├── commentsReducer.js
