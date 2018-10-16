@@ -1,9 +1,10 @@
-import * as API from "../services/Api";
-
-export const LOAD_COMMENTS = "LOAD_COMMENTS";
-export const ADD_COMMENT = "ADD_COMMENT";
-export const UPDATE_COMMENT = "UPDATE_COMMENT";
-export const DELETE_COMMENT = "DELETE_COMMENT";
+import * as API from "../../services/Api";
+import {
+  LOAD_COMMENTS,
+  ADD_COMMENT,
+  UPDATE_COMMENT,
+  DELETE_COMMENT
+} from "./actionTypes";
 
 export const loadComments = comments => ({
   type: LOAD_COMMENTS,

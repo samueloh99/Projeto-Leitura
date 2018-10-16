@@ -1,7 +1,6 @@
-import * as API from "../services/Api";
+import * as API from "../../services/Api";
 
-export const LOAD_CATEGORIES = "LOAD_CATEGORIES";
-export const LOAD_POSTS_CATEGORY = "LOAD_POSTS_CATEGORY";
+import { LOAD_CATEGORIES, LOAD_POSTS_CATEGORY } from "./actionTypes";
 
 export const loadCategories = categories => ({
   type: LOAD_CATEGORIES,

@@ -1,4 +1,4 @@
-import { SHOW_SNACK, HIDE_SNACK } from "../actions/snack";
+import { SHOW_SNACK, HIDE_SNACK } from "../actions/snack/actionTypes";
 
 const initialState = {
   showSnack: false,

@@ -1,10 +1,11 @@
-import * as API from "../services/Api";
-
-export const LOAD_POSTS = "LOAD_POSTS";
-export const INSERT_POST = "INSERT_POST";
-export const UPDATE_POST = "UPDATE_POST";
-export const GET_POST = "GET_POST";
-export const DELETE_POST = "DELETE_POST";
+import * as API from "../../services/Api";
+import {
+  LOAD_POSTS,
+  INSERT_POST,
+  UPDATE_POST,
+  GET_POST,
+  DELETE_POST
+} from "./actionTypes";
 
 export const loadPosts = posts => {
   return {

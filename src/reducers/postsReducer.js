@@ -4,7 +4,7 @@ import {
   UPDATE_POST,
   GET_POST,
   DELETE_POST
-} from "../actions/posts";
+} from "../actions/posts/actionTypes";
 
 export const posts = (state = [], action) => {
   switch (action.type) {
