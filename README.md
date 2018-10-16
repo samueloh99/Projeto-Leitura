@@ -21,6 +21,18 @@ Para iniciar o ambiente de desenvolvimento, execute os seguintes comandos:
 * instale todas as dependências da aplicação com `npm install`
 * inicie o ambiente com `npm start`
 
+## Iniciando o servidor
+
+Para a aplicação funcionar normalmente, será necessário clonar o repositório em que se encontra o servidor utilizado
+para obter e persistir as informações da aplicação. Para isso, rode os comandos abaixo:
+
+```sh
+$ git clone git@github.com:udacity/reactnd-project-readable-starter.git
+$ cd reactnd-project-readable-starter/api-server
+$ npm install
+$ node server
+```
+
 ## Estrutura do projeto
 ```bash
 ├── package.json # arquivo de gerenciamento de pacotes npm.
