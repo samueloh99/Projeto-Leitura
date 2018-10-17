@@ -18,8 +18,8 @@ class RegisterComment extends Component {
     const { id, author, body } = comment;
     this.setState({
       idToEdit: id,
-      author,
-      body
+      author: author || "",
+      body: body || ""
     });
   };
 

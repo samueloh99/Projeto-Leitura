@@ -52,7 +52,11 @@ class App extends Component {
             {categories &&
               categories.map(category => {
                 return (
-                  <Link className="link-default" to={`/${category.path}`}>
+                  <Link
+                    key={category.path}
+                    className="link-default"
+                    to={`/${category.path}`}
+                  >
                     <Button className="button-white">{category.name}</Button>
                   </Link>
                 );

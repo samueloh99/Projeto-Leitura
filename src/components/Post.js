@@ -88,7 +88,7 @@ Post.propTypes = {
   totalPontos: PropTypes.number,
   totalComentarios: PropTypes.number,
   categoria: PropTypes.string,
-  isDetalhes: PropTypes.boolean,
+  isDetalhes: PropTypes.bool,
   removerMethod: PropTypes.func
 };
 
