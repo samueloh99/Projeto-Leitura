@@ -23,7 +23,7 @@ class PostDetails extends Component {
   }
 
   componentWillReceiveProps({ post, history }) {
-    if (!post.id || post.isDeleted) {
+    if (!post.id) {
       history.push("/page/notfound/404");
     }
   }
