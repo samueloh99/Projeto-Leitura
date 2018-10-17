@@ -28,6 +28,10 @@ body {
   opacity: 0.8;
 }
 
+.link-default .button-white {
+  color: #fff;
+}
+
 .total-points {
   font-size: 50px;
   margin: 0px;

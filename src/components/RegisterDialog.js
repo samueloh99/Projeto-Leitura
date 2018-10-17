@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getCategories } from "../actions/categories";
 import { persistPost } from "../actions/posts";
 import { showSnack } from "../actions/snack";
 import Dialog from "@material-ui/core/Dialog";
@@ -26,10 +25,6 @@ class RegisterDialog extends Component {
     snackMessage: "",
     categoriaSelecionada: ""
   };
-
-  componentDidMount() {
-    this.props.carregarCategorias();
-  }
 
   componentWillReceiveProps({ isEdit, post }) {
     if (isEdit) {
@@ -185,7 +180,6 @@ const MapStateToProps = state => {
 };
 
 const MapDispatchToProps = dispatch => ({
-  carregarCategorias: () => dispatch(getCategories()),
   savePost: (post, successCallback, isEdit) =>
     dispatch(persistPost(post, successCallback, isEdit)),
   mostrarSnack: message => dispatch(showSnack(message))

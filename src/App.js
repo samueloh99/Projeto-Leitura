@@ -12,11 +12,18 @@ import Page404 from "./pages/Page404";
 import Snackbar from "@material-ui/core/Snackbar";
 import { withRouter } from "react-router-dom";
 import { hideSnack } from "./actions/snack";
+import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import { getCategories } from "./actions/categories";
 
 class App extends Component {
   state = {
     open: false
   };
+
+  componentDidMount() {
+    this.props.carregarCategorias();
+  }
 
   handleClose = () => {
     this.setState(
@@ -34,12 +41,23 @@ class App extends Component {
   }
 
   render() {
-    const { message } = this.props;
+    const { message, categories } = this.props;
     const { open } = this.state;
     return (
       <div className="App">
         <AppBar position="static" color="primary">
-          <Toolbar>Projeto Leitura</Toolbar>
+          <Toolbar>
+            Projeto Leitura
+            <span style={{ flex: 1 }} />
+            {categories &&
+              categories.map(category => {
+                return (
+                  <Link className="link-default" to={`/${category.path}`}>
+                    <Button className="button-white">{category.name}</Button>
+                  </Link>
+                );
+              })}
+          </Toolbar>
         </AppBar>
         <div className="app-content">
           <Switch>
@@ -67,12 +85,14 @@ class App extends Component {
 const MapStateToProps = state => {
   return {
     showSnack: state.snack.showSnack,
-    message: state.snack.message
+    message: state.snack.message,
+    categories: state.categories
   };
 };
 
 const MapDispatchToProps = dispatch => ({
-  hideSnackbar: () => dispatch(hideSnack())
+  hideSnackbar: () => dispatch(hideSnack()),
+  carregarCategorias: () => dispatch(getCategories())
 });
 
 export default withRouter(connect(MapStateToProps, MapDispatchToProps)(App));
